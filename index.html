@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mafouo Tayo McWebster — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a3260;
+    --accent: #c8a84b;
+    --accent-light: #e8d08a;
+    --light: #f5f4f0;
+    --white: #ffffff;
+    --text: #2a2a2a;
+    --muted: #6b6b6b;
+    --border: #e0ddd5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--light);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15, 31, 61, 0.97);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    border-bottom: 1px solid rgba(200,168,75,0.25);
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,168,75,0.12);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; top: 40px; right: 40px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,168,75,0.08);
+  }
+
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; gap: 60px;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,168,75,0.15);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(200,168,75,0.3);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    margin-bottom: 36px;
+    letter-spacing: 0.3px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 48px;
+  }
+
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 32px;
+    border: none; border-radius: 3px;
+    cursor: pointer; text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 13px 32px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 3px;
+    cursor: pointer; text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-avatar {
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy-mid), #2a4a8a);
+    border: 3px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .hero-avatar::before {
+    content: '';
+    position: absolute; inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,168,75,0.3);
+  }
+  .hero-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 5%; }
+
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-header { margin-bottom: 56px; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .section-line {
+    width: 48px; height: 2px;
+    background: var(--accent);
+    margin-top: 16px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .about-details {
+    display: flex; flex-direction: column; gap: 16px;
+    margin-top: 32px;
+  }
+  .detail-row {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px;
+    color: var(--text);
+    padding: 12px 16px;
+    background: var(--light);
+    border-left: 3px solid var(--accent);
+    border-radius: 2px;
+  }
+  .detail-label { color: var(--muted); font-size: 12px; min-width: 80px; }
+
+  /* ── SKILLS ── */
+  #competences { background: var(--light); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .skill-icon {
+    width: 44px; height: 44px;
+    background: rgba(200,168,75,0.1);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+  .skill-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .skill-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .skill-bar-wrap { margin-top: 14px; }
+  .skill-bar-bg {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  /* ── PROJECTS ── */
+  #projets { background: var(--white); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: var(--white);
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(15,31,61,0.1);
+  }
+
+  .project-header {
+    background: var(--navy);
+    padding: 32px 28px 28px;
+    position: relative;
+  }
+  .project-num {
+    position: absolute; top: 16px; right: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+  }
+  .project-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(200,168,75,0.12);
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .project-body { padding: 24px 28px; }
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .project-techs { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tech-pill {
+    font-size: 12px;
+    padding: 4px 12px;
+    background: var(--light);
+    color: var(--navy);
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--navy); }
+  #certifications .section-title { color: var(--white); }
+  #certifications .section-label { color: var(--accent); }
+
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .cert-card {
+    border: 1px solid rgba(200,168,75,0.2);
+    border-radius: 4px;
+    padding: 28px 24px;
+    display: flex; align-items: flex-start; gap: 20px;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: var(--accent); }
+
+  .cert-badge {
+    width: 52px; height: 52px; flex-shrink: 0;
+    background: rgba(200,168,75,0.12);
+    border: 1px solid rgba(200,168,75,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .cert-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .cert-org { font-size: 13px; color: rgba(255,255,255,0.45); }
+  .cert-year {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--light); }
+
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-info p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .contact-items { display: flex; flex-direction: column; gap: 16px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px; color: var(--text);
+  }
+  .contact-item-icon {
+    width: 40px; height: 40px;
+    background: var(--navy);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+
+  .form-submit {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 32px;
+    border: none; border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--accent); color: var(--navy); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 32px 5%;
+    text-align: center;
+    border-top: 1px solid rgba(200,168,75,0.2);
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent);
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.35); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero h1  { animation: fadeUp 0.6s ease 0.25s both; }
+  .hero-sub { animation: fadeUp 0.6s ease 0.35s both; }
+  .hero-desc { animation: fadeUp 0.6s ease 0.45s both; }
+  .hero-ctas { animation: fadeUp 0.6s ease 0.55s both; }
+  .hero-stats { animation: fadeUp 0.6s ease 0.65s both; }
+  .hero-avatar { animation: fadeUp 0.6s ease 0.3s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-avatar { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-wrap { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">MTM</span>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Étudiant Ingénieur · 4ème Année</div>
+      <h1>Mafouo Tayo<br><span>McWebster</span></h1>
+      <p class="hero-sub">Développement · Réseaux · Cybersécurité</p>
+      <p class="hero-desc">
+        Étudiant en cycle ingénieur passionné par le développement web, la sécurité informatique et l'administration des systèmes. Je construis des solutions robustes et sécurisées pour répondre aux défis numériques d'aujourd'hui.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projets" class="btn-primary">Voir mes projets</a>
+        <a href="mailto:mmafouotayo@gmail.com" class="btn-outline">Me contacter</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Projets réalisés</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Certification</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-avatar">
+      <span class="hero-initials">MTM</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Qui suis-je</div>
+      <h2 class="section-title">À propos de moi</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Je suis Mafouo Tayo McWebster, étudiant en 4ème année du cycle ingénieur, spécialisé dans le développement logiciel, les réseaux informatiques et la cybersécurité.
+        </p>
+        <p>
+          Ma formation m'a permis d'acquérir de solides compétences techniques allant du développement web front-end avec HTML/CSS, à la programmation back-end avec Python, en passant par l'administration de bases de données SQL et la sécurité des systèmes d'information.
+        </p>
+        <p>
+          Je suis convaincu que la sécurité informatique est au cœur de chaque projet numérique réussi, et je m'efforce d'intégrer cette dimension dans chacune de mes réalisations.
+        </p>
+      </div>
+      <div>
+        <div class="about-details">
+          <div class="detail-row">
+            <span class="detail-label">Statut</span>
+            <span>Étudiant Ingénieur — 4ème Année</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Spécialités</span>
+            <span>Développement & Sécurité</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Langages</span>
+            <span>HTML, CSS, Python, SQL</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Domaines</span>
+            <span>Réseaux, Cybersécurité, Base de données</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Disponibilité</span>
+            <span>Ouvert aux stages & projets</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<section id="competences">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Expertise technique</div>
+      <h2 class="section-title">Compétences</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">HTML & CSS</div>
+        <div class="skill-desc">Création d'interfaces web responsives, structurées et accessibles.</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-bg"><div class="skill-bar" style="width: 85%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">Développement d'applications, scripts d'automatisation et traitement de données.</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-bg"><div class="skill-bar" style="width: 78%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🔗</div>
+        <div class="skill-name">Réseaux</div>
+        <div class="skill-desc">Architecture réseau, protocoles TCP/IP, configuration et diagnostic.</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-bg"><div class="skill-bar" style="width: 75%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🔒</div>
+        <div class="skill-name">Cybersécurité</div>
+        <div class="skill-desc">Sécurité des systèmes, analyse des vulnérabilités et bonnes pratiques de protection.</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-bg"><div class="skill-bar" style="width: 72%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">SQL & Bases de données</div>
+        <div class="skill-desc">Administration, modélisation et optimisation de bases de données relationnelles.</div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-bg"><div class="skill-bar" style="width: 80%"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Réalisations</div>
+      <h2 class="section-title">Projets</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">01</div>
+          <div class="project-tag">Application Web</div>
+          <div class="project-title">Gestion des Absences</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">
+            Application web permettant de gérer et suivre les absences des étudiants ou employés. Intègre un tableau de bord de suivi, des rapports automatisés et une gestion des utilisateurs avec différents niveaux d'accès.
+          </p>
+          <div class="project-techs">
+            <span class="tech-pill">HTML/CSS</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">SQL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">02</div>
+          <div class="project-tag">Application Web</div>
+          <div class="project-title">Gestion des Stocks</div>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">
+            Système de gestion d'inventaire en ligne permettant de suivre les entrées et sorties de produits, générer des alertes de stock bas et produire des rapports détaillés pour une meilleure prise de décision.
+          </p>
+          <div class="project-techs">
+            <span class="tech-pill">HTML/CSS</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">SQL</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Reconnaissance</div>
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-grid">
+
+      <div class="cert-card">
+        <div class="cert-badge">🛡️</div>
+        <div>
+          <div class="cert-name">Cybersecurity 101</div>
+          <div class="cert-org">Certification en cybersécurité fondamentale</div>
+          <div class="cert-year">Obtenue en cours de formation</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-badge">🎓</div>
+        <div>
+          <div class="cert-name">Cycle Ingénieur — 4ème Année</div>
+          <div class="cert-org">Formation d'ingénieur en informatique</div>
+          <div class="cert-year">En cours</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Travaillons ensemble</div>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <p>
+          Vous avez un projet, une opportunité de stage ou souhaitez simplement échanger sur des sujets techniques ? N'hésitez pas à me contacter, je serai ravi de vous répondre.
+        </p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <span>mmafouotayo@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <span>Cameroun</span>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">💼</div>
+            <span>Disponible pour stages & projets</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="sendMail(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" id="cf-name" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="cf-email" placeholder="votre@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Sujet</label>
+          <input type="text" id="cf-subject" placeholder="Objet de votre message" required>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" id="cf-message" placeholder="Décrivez votre projet ou demande..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Envoyer le message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Mafouo Tayo McWebster</div>
+  <div class="footer-copy">© 2025 — Étudiant Ingénieur · Développement · Réseaux · Cybersécurité</div>
+</footer>
+
+<script>
+  function sendMail(e) {
+    e.preventDefault();
+    const name    = document.getElementById('cf-name').value;
+    const email   = document.getElementById('cf-email').value;
+    const subject = document.getElementById('cf-subject').value;
+    const message = document.getElementById('cf-message').value;
+    const body = encodeURIComponent(
+      "Nom : " + name + "\n" +
+      "Email : " + email + "\n\n" +
+      message
+    );
+    const subjectEnc = encodeURIComponent(subject);
+    window.location.href = "mailto:mmafouotayo@gmail.com?subject=" + subjectEnc + "&body=" + body;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.skill-card, .project-card, .cert-card, .detail-row').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
